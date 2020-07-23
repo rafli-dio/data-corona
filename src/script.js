@@ -1,26 +1,50 @@
-const requestApi1 = async () => {
-    try{
-            const req = await fetch ("https://covid19.mathdro.id/api/")
-            const res = await req.json();
-            const target = document.getElementById("positif")
+const kasusPositif = document.getElementById("positif")
 
-            res.Search.forEach(covid => {
-                target.innerHTML = `
-                <div class="card-group text-center">
-                <div class="card bg-danger">
-                  
-                  <div class="card-body text-center text-white">
-                    <h5 class="card-title">Positiv</h5>
-                    <p class="card-text">${covid.confirmed}</p>
-                    <img src="img/sad.svg" style="width: 100px;" class="card-img-top " alt="...">
-                  </div>
-                </div>
-                `
-            })
-    }
+const reqPositif = async() => {
+    try{
+        const req = await fetch("https://covid19.mathdro.id/api/")
+        const res = await req.json();
+
+        kasusPositif.innerHTML = `${res.confirmed.value} orang`
+    } 
     catch(error){
         console.log(error)
     }
 }
 
-requestApi1()
+reqPositif()
+
+// meninggal
+
+const kasusMeninggal = document.getElementById("meninggal")
+
+const reqMeninggal = async() => {
+    try{
+        const req = await fetch("https://covid19.mathdro.id/api/")
+        const res = await req.json();
+
+        kasusMeninggal.innerHTML = `${res.deaths.value} orang`
+    } 
+    catch(error){
+        console.log(error)
+    }
+}
+
+reqMeninggal()
+
+// sembuh
+const kasusSembuh = document.getElementById("sembuh")
+
+const reqSembuh = async() => {
+    try{
+        const req = await fetch("https://covid19.mathdro.id/api/")
+        const res = await req.json();
+
+        kasusSembuh.innerHTML = `${res.recovered.value} orang`
+    } 
+    catch(error){
+        console.log(error)
+    }
+}
+
+reqSembuh()
